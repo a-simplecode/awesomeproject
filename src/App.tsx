@@ -22,6 +22,7 @@ const PizzaTranslator = () => {
       <Button
         title="Submit"
         disabled={!username || !password}
+        color="#f194ff"
         onPress={() => Alert.alert('welcome ' + username)}
       />
     </View>

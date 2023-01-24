@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     padding: 10,
+    backgroundColor: "rgba(212, 245, 250,0.5)",
   },
   title: {
     fontSize: 30,

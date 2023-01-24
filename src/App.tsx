@@ -1,9 +1,19 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, TextInput, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, TextInput, Button, Alert, GestureResponderEvent, ActivityIndicator} from 'react-native';
 
 const PizzaTranslator = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const submitForm = (event: GestureResponderEvent) => {
+    setIsLoading(true)
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -19,12 +29,19 @@ const PizzaTranslator = () => {
         onChangeText={newText => setPassword(newText)}
         defaultValue={password}
       />
-      <Button
-        title="Submit"
-        disabled={!username || !password}
-        color="#f194ff"
-        onPress={() => Alert.alert('welcome ' + username)}
-      />
+
+      <View style={styles.buttonView}>
+        {isLoading
+          ?
+          <ActivityIndicator size={35} color="#0000ff" />
+          :
+          <Button
+            title="Submit"
+            disabled={!username || !password}
+            color="#0000ff"
+            onPress={submitForm}
+          />}
+      </View>
     </View>
   );
 };
@@ -48,5 +65,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '70%',
   },
+  buttonView: {
+    height: 70
+  }
 });
 export default PizzaTranslator;
